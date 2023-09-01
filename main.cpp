@@ -442,10 +442,166 @@ int main()
         break;
     }
     case 29: {
-        cout << "Ejercicio 29. Escriba un programa que adivine un numero A " << endl;
-        srand(time(0));
-        int numeroAleatorio = rand() % 100 + 1;
-        cout << numeroAleatorio << endl;
+        int numeroAleatorio = 0;
+        char respuesta;
+        numeroAleatorio = rand() % 101;
+        do
+        {
+            cout << "Es el numero " << numeroAleatorio << "? (>, <, =)" << endl;
+            cin >> respuesta;
+            switch (respuesta)
+            {
+            case '>':
+                numeroAleatorio++;
+                break;
+            case '<':
+                numeroAleatorio--;
+                break;
+            case '=':
+                break;
+            default:
+                cout << "Respuesta no valida." << endl;
+                    break;
+            }
+        } while (respuesta != '=');
+        cout << "Acerte!" << endl;
+        break;
+    }
+    case 30: {
+        int A, B, intentos = 0;
+        A = rand() % 101;
+        do
+        {
+            cout << "Adivina el numero (entre 0 y 100): ";
+            cin >> B;
+            intentos++;
+            if (B > A) cout << "El numero es menor que " << B << endl;
+            else if (B < A) cout << "El numero es mayor que " << B << endl;
+            else cout << "Acertaste en " << intentos << " intentos!" << endl;
+        } while (B != A);
+        break;
+    }
+    case 31: {
+        int cantidad;
+        int resto;
+        int billetes_de_cincuenta;
+        int billetes_de_veinte;
+        int billetes_de_diez;
+        int billetes_de_cinco;
+        int billetes_de_dos;
+        int billetes_de_uno;
+        int monedas_de_quinientos;
+        int monedas_de_doscientos;
+        int monedas_de_cien;
+        int monedas_de_cincuenta;
+        cout << "Ingrese la cantidad a devolver: ";
+        cin >> cantidad;
+        billetes_de_cincuenta = cantidad / 50000;
+        resto = cantidad % 50000;
+        billetes_de_veinte = resto / 20000;
+        resto = resto % 20000;
+        billetes_de_diez = resto / 10000;
+        resto = resto % 10000;
+        billetes_de_cinco = resto / 5000;
+        resto = resto % 5000;
+        billetes_de_dos = resto / 2000;
+        resto = resto % 2000;
+        billetes_de_uno = resto / 1000;
+        resto = resto % 1000;
+        monedas_de_quinientos = resto / 500;
+        resto = resto % 500;
+        monedas_de_doscientos = resto / 200;
+        resto = resto % 200;
+        monedas_de_cien = resto / 100;
+        resto = resto % 100;
+        monedas_de_cincuenta = resto / 50;
+        resto = resto % 50;
+        cout << "50000: " << billetes_de_cincuenta << endl;
+        cout << "20000: " << billetes_de_veinte << endl;
+        cout << "10000: " << billetes_de_diez << endl;
+        cout << "5000: " << billetes_de_cinco << endl;
+        cout << "2000: " << billetes_de_dos << endl;
+        cout << "1000: " << billetes_de_uno << endl;
+        cout << "500: " << monedas_de_quinientos << endl;
+        cout << "200: " << monedas_de_doscientos << endl;
+        cout << "100: " << monedas_de_cien << endl;
+        cout << "50: " << monedas_de_cincuenta << endl;
+        cout << "Faltante: " << resto << endl;
+        break;
+    }
+    case 32: {
+        char letra;
+        cout << "Ingrese la letra a verificar: ";
+        cin >> letra;
+        if ((letra >= 65 && letra <= 90) || (letra >= 97 && letra <= 122)){
+            char vocales[] = {'A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'};
+            bool consonante = true;
+            for (int i = 0; i <= 9; i++){
+                    if (vocales[i] == letra){
+                    cout << "Es una vocal!" << endl;
+                    consonante = false;
+                    break;
+                    } else
+                    consonante = true;
+            }
+            if (consonante == true) cout << "Es consonante" << endl;
+        } else
+            cout << "No es una letra!" << endl;
+        break;
+    }
+    case 33: {
+        int mes, dia;
+        int meses[]={31,29,31,30,31,30,31,31,30,31,30,31};
+        cout<<"Validacion de combinacion de mes y dia";
+        cout<<endl<<"Ingrese el dia: ";
+        cin>>dia;
+        cout<<"Ingrese el mes: ";
+        cin>>mes;
+
+        if (mes>=1 && mes<=12){
+            if (dia>=1 && dia<=meses[mes-1]) cout<<dia<<"/"<<mes<<" es una fecha valida"<<endl;
+            else cout<<dia<<"/"<<mes<<" es una fecha invalida"<<endl;
+        }else{
+            cout<<mes<<" es un mes invalido"<<endl;
+        }
+        break;
+    }
+    case 34: {
+        int hora, duracion;
+        cout<<"Suma de tiempo"<<endl;
+        cout<<"Ingrese la hora: ";
+        cin>> hora;
+        int invalido_hor = hora%100;
+        if (invalido_hor<60){
+            cout<<"Ingrese la duracion: ";
+            cin>> duracion;
+            int invalido_dur = duracion%100;
+            if (invalido_dur<60){
+                    int dur_min = duracion%100; cout<<dur_min<<endl;
+                    int hor_min = hora%100; cout<<hor_min<<endl;
+                    int res_min = (dur_min+hor_min)%60; cout<<res_min<<endl;
+                    int hor = (hora/100); int hor_dur = duracion/100 ;
+                    int sum_hr = hor+hor_dur+((dur_min+hor_min)/60); cout<<"La hora es: "<<sum_hr<<res_min<<endl;
+            }else{cout<<duracion<<" es una duracion invalida"<<endl;}
+
+        }else{
+            cout<<hora<<" es un tiempo invalido"<<endl;
+        }
+        break;
+    }
+    case 35: {
+        int suma=0; int n;
+        int suma_fibonacci = 0;
+        int acumulados[]={1,1};
+        cout<<"Serie de Fibonnaci"<<endl;
+        cout<<"Ingrese el numero a hallar la suma de los pares: "; cin>>n;
+        while (suma_fibonacci<=n) {
+            int s = acumulados[0]+acumulados[1];
+            acumulados[0]= acumulados[1]; acumulados[1]=s;
+            if (s%2==0 && s<=n) suma += s;
+            suma_fibonacci=s;
+        }
+        cout<<"El resultado de la suma es: "<<suma<<endl;
         break;
     }
     default:
